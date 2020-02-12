@@ -61,3 +61,38 @@ imgTwo.addEventListener("dragstart", function(event) {
     // reset the transparency
     event.target.style.opacity = "";
   }, false);
+  let dropspot = document.querySelector('.content-section');
+  // 11
+dropspot.addEventListener("dragover", function(event) {
+    // prevent default to allow drop
+    event.preventDefault();
+  }, false);
+  // 12
+  dropspot.addEventListener("dragenter", function(event) {
+    // highlight potential drop target when the draggable element enters it
+    if (event.target.className == "content-section") {
+      event.target.style.background = "beige";
+    }
+  
+  }, false);
+
+
+  dropspot.addEventListener("dragleave", function(event) {
+    // reset background of potential drop target when the draggable element leaves it
+    if (event.target.className == "content-section") {
+      event.target.style.background = "";
+    }
+  
+  }, false);
+  
+  dropspot.addEventListener("drop", function(event) {
+    // prevent default action (open as link for some elements)
+    event.preventDefault();
+    // move dragged elem to the selected drop target
+    if (event.target.className == "content-section") {
+      event.target.style.background = "";
+      dragged.parentNode.removeChild( dragged );
+      event.target.appendChild( dragged );
+    }
+  }, false);
+  
